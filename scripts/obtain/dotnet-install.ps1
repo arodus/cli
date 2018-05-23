@@ -399,7 +399,7 @@ function Get-List-Of-Directories-And-Versions-To-Unpack-From-Dotnet-Package([Sys
     Say-Invocation $MyInvocation
 
     $ret = @()
-    foreach ($entry in $Zip.Entries) {
+    foreach ($entry in $Zip.Entries | Sort-Object) {
         $dir = Get-Path-Prefix-With-Version $entry.FullName
         if ($dir -ne $null) {
             $path = Get-Absolute-Path $(Join-Path -Path $OutPath -ChildPath $dir)
